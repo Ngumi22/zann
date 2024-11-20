@@ -2,7 +2,7 @@ import { getConnection } from "@/lib/database/dbSetup";
 import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
-export async function GET(res: NextResponse) {
+export async function GET() {
   const connection = await getConnection();
   try {
     const [brand] = await connection.query(` SELECT * FROM brands`);

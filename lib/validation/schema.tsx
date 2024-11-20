@@ -61,7 +61,6 @@ export const schema = z.object({
     z.number().positive().min(1)
   ),
   image: imageSchema,
-
   tags: z.array(z.string()).optional(),
   brand_name: z.string().trim().min(1, {
     message: "Brand name is required.",
@@ -78,7 +77,7 @@ interface Category {
 }
 
 // Define a recursive Zod schema for Category
-const categorySchema: z.ZodType<Category> = z.lazy(() =>
+export const categorySchema: z.ZodType<Category> = z.lazy(() =>
   z.object({
     category_id: z.number().optional(),
     category_name: z.string().min(1, "Category name is required"),
@@ -94,5 +93,3 @@ export const createCategorySchema = z.object({
   category_description: z.string().optional(),
   parent_id: z.number().nullable().optional(),
 });
-
-export { categorySchema };

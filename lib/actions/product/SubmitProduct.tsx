@@ -1,6 +1,6 @@
 "use server";
 
-import { schema } from "../validation/schema";
+import { schema } from "../../validation/schema";
 
 export type FormState = {
   message: string;
@@ -20,6 +20,7 @@ export async function SubmitAction(
     try {
       formData.tags = JSON.parse(formData.tags.toString());
     } catch (error) {
+      console.log(error);
       return {
         message: "Invalid tags format",
         fields: { ...prevState.fields },

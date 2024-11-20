@@ -3,7 +3,7 @@ import { performance } from "perf_hooks";
 
 // This module initializes the database pool and provides utility functions for querying the database.
 
-let slowQueryThreshold = 1000; // in ms, adjust as needed
+const slowQueryThreshold = 1000; // in ms, adjust as needed
 
 let pool: mysql.Pool | null = null;
 let activeConnections = 0;
@@ -12,14 +12,14 @@ let totalConnectionsCreated = 0;
 export async function initDbConnection(): Promise<void> {
   if (!pool) {
     pool = mysql.createPool({
-        host: process.env.DB_HOST!,
-        user: process.env.DB_USER!,
-        password: process.env.DB_PASSWORD!,
-        database: process.env.DB_NAME!,
-        waitForConnections: true,
-        connectionLimit: 10000,
-        queueLimit: 0,
-      });
+      host: process.env.DB_HOST!,
+      user: process.env.DB_USER!,
+      password: process.env.DB_PASSWORD!,
+      database: process.env.DB_NAME!,
+      waitForConnections: true,
+      connectionLimit: 10000,
+      queueLimit: 0,
+    });
 
     // Check if pool and config are accessible
     if (pool && pool.pool && pool.pool.config) {
@@ -68,7 +68,7 @@ export function getConnectionPoolMetrics() {
   };
 }
 
-export async function query(sql: string, params: any[] = []): Promise<any> {
+export async function query(sql: string, params: any): Promise<any> {
   if (!pool) {
     await initDbConnection();
   }

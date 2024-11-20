@@ -1,14 +1,10 @@
 import {
-  Users,
   Settings,
-  Bookmark,
   SquarePen,
   LayoutGrid,
   LucideIcon,
   UsersRound,
   Book,
-  ShoppingCart,
-  BookOpen,
 } from "lucide-react";
 
 type Submenu = {
@@ -48,31 +44,38 @@ export function getMenuList(pathname: string): Group[] {
       groupLabel: "Contents",
       menus: [
         {
-          href: "/dashboard/products",
+          href: "a",
           label: "Products",
-          active: pathname.includes("/dashboard/products"),
+          active: pathname.includes("a"),
           icon: SquarePen,
-          submenus: [],
-        },
-        {
-          href: "/dashboard/categories",
-          label: "Categories",
-          active: pathname.includes("/categories"),
-          icon: Bookmark,
-          submenus: [],
+          submenus: [
+            {
+              href: "/dashboard/products",
+              label: "All Products",
+              active: pathname.includes("/dashboard/products"),
+            },
+            {
+              href: "/dashboard/products/add",
+              label: "Add New Product",
+              active: pathname.includes("/dashboard/products/add"),
+            },
+            {
+              href: "/dashboard/categories",
+              label: "Categories",
+              active: pathname.includes("/dashboard/categories"),
+            },
+            {
+              href: "/dashboard/brands",
+              label: "Brands",
+              active: pathname.includes("/dashboard/brands"),
+            },
+          ],
         },
         {
           href: "/dashboard/orders",
           label: "Orders",
           active: pathname.includes("/orders"),
-          icon: ShoppingCart,
-          submenus: [],
-        },
-        {
-          href: "/dashboard/invoices",
-          label: "Invoices",
-          active: pathname.includes("/invoices"),
-          icon: BookOpen,
+          icon: UsersRound,
           submenus: [],
         },
         {
@@ -81,6 +84,41 @@ export function getMenuList(pathname: string): Group[] {
           active: pathname.includes("/customers"),
           icon: UsersRound,
           submenus: [],
+        },
+
+        {
+          href: "/dashboard/promo",
+          label: "Promotions",
+          active: pathname.includes("/promo"),
+          icon: UsersRound,
+          submenus: [],
+        },
+
+        {
+          href: "/dashboard/reviews",
+          label: "Reviews",
+          active: pathname.includes("/reviews"),
+          icon: UsersRound,
+          submenus: [],
+        },
+
+        {
+          href: "c",
+          label: "Staff",
+          active: pathname.includes("c"),
+          icon: Book,
+          submenus: [
+            {
+              href: "/dashboard/staff",
+              label: "All Staff",
+              active: pathname === "/dashboard/staff",
+            },
+            {
+              href: "/dashboard/staff/add",
+              label: "Add Staff",
+              active: pathname === "/dashboard/staff/add",
+            },
+          ],
         },
 
         {
@@ -106,13 +144,6 @@ export function getMenuList(pathname: string): Group[] {
     {
       groupLabel: "Settings",
       menus: [
-        {
-          href: "/users",
-          label: "Users",
-          active: pathname.includes("/users"),
-          icon: Users,
-          submenus: [],
-        },
         {
           href: "/account",
           label: "Account",
